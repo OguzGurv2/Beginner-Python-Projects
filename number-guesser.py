@@ -1,62 +1,67 @@
-# Importing random and time modules for:
-# randomizing numbers and to delay responds.
-
 import random
 import time
 
-# Intro of the game when the file executed.
+# Intro of the game when the file is executed.
 print("This is a number guessing game!")
 
 # Main game function that starts the game.
 def main():
-
-    # randrange function randomizes an integer between to numbers.
-    guess_number = random.randrange(1, 5)
     time.sleep(1)
-    print("Guess from 1-5.")
+    print("From zero to which number do you want to guess?")
+    range_value = check_input(input(), is_range=True)
 
-    # Checks user input with an external function.
-    user_number = check_input(input())
+    # Randomly select a number between 0 and range_value
+    time.sleep(1)
+    guess_number = random.randrange(0, range_value + 1)
+    print(f"Guess from 0 to {range_value}.")
 
-    # Checks if user's input equals to the randomized number 
-    if guess_number == user_number :
+    # Get user's guess and validate it
+    user_number = check_input(input(), is_range=False, range_value=range_value)
+
+    # Check if the user's guess matches the random number
+    if guess_number == user_number:
         print("You won!")
-        time.sleep(1)
-        # Asks for a new game and restarts the game according to the input.
-        print("Do you want to replay? (y/n)")
-        restart_game(input())
     else:
-        # If user lost shows the computer's number.
-        print("Try again!" + "\nThe number was: " + str(guess_number))
-        time.sleep(1)
-        print("Do you want to replay? (y/n)")
-        restart_game(input())
+        print(f"Try again! The number was: {guess_number}")
 
+    time.sleep(1)
+    print("Do you want to replay? (y/n)")
+    restart_game(input())
 
-def check_input(input_string):
-    # Checks if the input is an integer with .isdigit() function.
-    if input_string.isdigit(): 
-        # Checks the number if it's between 1 to 5.
-        if int(input_string) > 0 and int(input_string) < 6:
-            # Returns the input value as an integer to the variable
-            return int(input_string)
+# Function to check user input and validate it
+def check_input(input_string, is_range, range_value=None):
+    # While loop for better handling the process
+    while True: 
+        # Checks if the input is a digit
+        if input_string.isdigit(): 
+            num = int(input_string)
+            # If we are setting the range
+            if is_range: 
+                if num > 0:
+                    return num
+                else:
+                    print("Error: The range needs to be more than 0.")
+            # If the input is for guessing
+            else: 
+                if 0 <= num <= range_value:
+                    return num
+                else:
+                    print(f"Error: The number needs to be between 0 and {range_value}.")
         else:
-            # Gives error as an output then recalls the function with new input.
-            print("Error: Number needs to be between 1 to 5.")
-            check_input(input())
-    else:
-        # Gives error as an output then recalls the function with new input.
-        print("Error: Please type an integer!")
-        check_input(input())
+            print("Error: Please type an integer!")
 
-# Restarting function to give errors if necessary and runs the main function if needed.
+        # If input is invalid, ask for input again
+        input_string = input()
+
+# Function to restart or quit the game based on user's input
 def restart_game(param):
-    if param == "y":
+    if param.lower() == "y":
         main()
-    elif param == "n":
+    elif param.lower() == "n":
         quit()
     else:
         print("Error: Please type `y` for yes or `n` for no.")
         restart_game(input())
 
+# Start the game
 main()
