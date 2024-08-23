@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/style/index.css"/>
+    <script src="https://kit.fontawesome.com/13e3511e22.js" crossorigin="anonymous"></script>
+    <title>A Python Weather App</title>
+</head>
+<body>
+    <section>
+        <aside>
+            <div class="input-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input id="location-input" type="text" placeholder="Search for places...">
+            </div>
+            <div class="sidebar-content">
+                <div class="upper-content">
+                    <div class="img-container">
+                        <img src="./src/assets/sunny-icon.png" alt="sidebar-image">
+                    </div>
+                    <h1 id="tem">30°C</h1>
+                    <p id="day">Monday, </p>
+                </div>
+                <div class="lower-content">
+                    <div class="info-div">
+                        <img src="./src/assets/hot-icon.png" alt="sidebar-image">
+                        <p id="general-info">Very Hot</p>
+                    </div>
+                    <div class="info-div">
+                        <img src="./src/assets/rain-icon.png" alt="sidebar-image">
+                        <p id="rain-info">Rain - </p>
+                    </div>
+                    <div id="location">
+                        <h2>Ankara, Turkey</h2>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <main>
+            <header>
+                <ul>
+                    <li id="unit-selection">
+                        <button id="celcius" class="active">°C</button>
+                        <button id="fahreneit">°F</button>
+                    </li>
+                </ul>
+                
+            </header>
+        </main>
+    </section>
+    <footer>
+        <p>Footer</p>
+    </footer>
+</body>
+</html>
